@@ -33,6 +33,8 @@ function setCurrent(i) {
   prevBtn.disabled = i === 0;
   nextBtn.disabled = i === slides.length - 1;
   counterNow.textContent = pad(i + 1);
+  // No celular a lista de abas rola; mantém a aba ativa visível.
+  tabs[i].scrollIntoView({ block: "nearest", inline: "nearest" });
   // Atualiza o endereço (#tracker, #painel...) sem criar entrada no histórico,
   // assim dá para mandar o link direto de um projeto.
   history.replaceState(null, "", `#${slides[i].id}`);

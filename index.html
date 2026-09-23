@@ -24,7 +24,7 @@
     <div class="topbar-right">
       <span class="counter" aria-hidden="true"><span id="counter-now">01</span> / <span id="counter-total">04</span></span>
       <a class="toplink" href="https://github.com/GuilhermeWaldemir" target="_blank" rel="noopener">GitHub</a>
-      <a class="toplink" href="https://www.linkedin.com/in/guilherme-silva-barros-382065347/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="toplink" href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </header>
 
@@ -391,6 +391,109 @@
       </div>
     </section>
 
+    <!-- ============ 05 · CURRÍCULO ============ -->
+    <section class="slide" id="curriculo" aria-label="Currículo" tabindex="-1">
+      <div class="slide-inner project">
+        <aside class="project-meta">
+          <p class="label">04 · Currículo</p>
+          <h2>Currículo</h2>
+          <p class="lede">
+            Formação, competências técnicas e projetos em uma página. Disponível para
+            baixar em PDF ou ler aqui mesmo.
+          </p>
+
+          <div class="links">
+            <a class="btn btn-primary" href="assets/curriculo-guilherme-waldemir.pdf" download>Baixar PDF</a>
+            <a class="btn" href="curriculo.html" target="_blank" rel="noopener">Abrir no navegador</a>
+          </div>
+          <p class="note">PDF de uma página, pronto para anexar em processo seletivo.</p>
+        </aside>
+
+        <div class="project-body">
+          <section class="block">
+            <h3>Objetivo</h3>
+            <p>
+              Primeira oportunidade como <strong>estagiário ou desenvolvedor júnior</strong>, em
+              desenvolvimento de software ou análise, com espaço para aprender e entregar.
+            </p>
+          </section>
+
+          <section class="block">
+            <h3>Formação</h3>
+            <dl class="cv-list">
+              <div>
+                <dt>Bacharelado em Ciência da Computação</dt>
+                <dd>Universidade São Judas Tadeu · cursando o 2º semestre</dd>
+                <dd class="cv-detail">
+                  Disciplinas atuais: Matemática Computacional Aplicada e Projeto e
+                  Engenharia de Software.
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="block">
+            <h3>Competências técnicas</h3>
+            <dl class="cv-skills">
+              <div><dt>Linguagens</dt><dd>Java · TypeScript · JavaScript · Python · SQL · HTML · CSS</dd></div>
+              <div><dt>Bibliotecas e frameworks</dt><dd>React · Vite · Flask · Swing/AWT</dd></div>
+              <div><dt>Bancos de dados</dt><dd>SQLite · PostgreSQL (Supabase)</dd></div>
+              <div><dt>Testes</dt><dd>JUnit 5 · pytest</dd></div>
+              <div><dt>Ferramentas</dt><dd>Git · GitHub · GitHub Actions · Maven · Netlify · Render</dd></div>
+            </dl>
+          </section>
+
+          <section class="block">
+            <h3>Projetos</h3>
+            <dl class="cv-list">
+              <div>
+                <dt>Tracker Responsável <span class="cv-tech">Java, Swing, SQLite, Maven, JUnit 5</span></dt>
+                <dd>
+                  App para Windows que monitora processos em segundo plano, registra as horas
+                  jogadas na semana em banco local e avisa antes de cada sessão de jogo. Testes
+                  automatizados cobrem regras de sessão, suspensão do PC e virada de semana.
+                </dd>
+              </div>
+              <div>
+                <dt>Painel Pessoal <span class="cv-tech">React, TypeScript, Vite, Supabase, PWA</span></dt>
+                <dd>
+                  Painel diário mobile-first com tarefas, estudos, livros, agenda e clima.
+                  Login, sincronização em tempo real entre aparelhos e segurança por linha (RLS)
+                  no PostgreSQL. Publicado na Netlify e instalável como app.
+                </dd>
+              </div>
+              <div>
+                <dt>Monitor de Preços <span class="cv-tech">Python, Flask, SQLite, pytest, GitHub Actions</span></dt>
+                <dd>
+                  Compara o preço do mesmo produto em várias lojas, valida se as páginas são do
+                  mesmo item por código do fabricante/EAN e guarda o histórico com gráfico.
+                  Testes rodam sem internet, a partir de páginas reais salvas no repositório.
+                </dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · CERTIFICADOS ============ -->
+    <section class="slide" id="certificados" aria-label="Certificados" tabindex="-1">
+      <div class="slide-inner project">
+        <aside class="project-meta">
+          <p class="label">05 · Certificados</p>
+          <h2>Certificados</h2>
+          <p class="lede">
+            Cursos e certificações que fiz ao longo do caminho, com o comprovante de cada um.
+          </p>
+          <p class="note" id="cert-contagem"></p>
+        </aside>
+
+        <div class="project-body">
+          <div class="cert-grid" id="cert-grid"></div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <nav class="dock" aria-label="Navegação entre slides">
@@ -400,10 +503,13 @@
       <li><a href="#tracker" data-go="1">Tracker</a></li>
       <li><a href="#painel" data-go="2">Painel</a></li>
       <li><a href="#monitor" data-go="3">Monitor</a></li>
+      <li><a href="#curriculo" data-go="4">Currículo</a></li>
+      <li><a href="#certificados" data-go="5">Certificados</a></li>
     </ol>
     <button class="dock-arrow" id="next" type="button" aria-label="Próximo slide">→</button>
   </nav>
 
+  <script src="certificados.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

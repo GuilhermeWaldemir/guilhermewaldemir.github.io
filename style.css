@@ -499,6 +499,72 @@ p.todo { display: block; padding: 10px 14px; }
 }
 
 /* =========================================================
+   Currículo
+   ========================================================= */
+.cv-list { display: grid; gap: 22px; }
+.cv-list dt { font-weight: 500; font-size: 15px; }
+.cv-list dd { color: var(--text-2); margin-top: 4px; }
+.cv-detail { font-size: 13.5px; color: var(--text-3); }
+.cv-tech {
+  display: block;
+  font: 11.5px/1.6 var(--mono);
+  color: var(--text-3);
+  font-weight: 400;
+}
+
+.cv-skills { display: grid; gap: 10px; }
+.cv-skills div {
+  display: grid; grid-template-columns: 190px 1fr; gap: 16px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line);
+}
+.cv-skills dt { font-size: 14px; color: var(--text-3); }
+.cv-skills dd { font-size: 14px; color: var(--text-2); }
+
+/* =========================================================
+   Certificados
+   ========================================================= */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.cert-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 18px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.cert-card h4 { margin: 0; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; }
+.cert-org { font-size: 14px; color: var(--text-2); }
+.cert-meta { font: 12px var(--mono); color: var(--text-3); }
+.cert-tags { margin-top: 6px; }
+.cert-tags li { padding: 5px 8px; font-size: 11px; }
+
+.cert-links { display: flex; gap: 14px; margin-top: auto; padding-top: 12px; }
+.cert-links a {
+  font-size: 13.5px; font-weight: 500; text-decoration: none;
+  color: var(--accent);
+}
+.cert-links a:hover { text-decoration: underline; }
+
+.cert-vazio {
+  grid-column: 1 / -1;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  color: var(--text-3);
+}
+.cert-dica {
+  grid-column: 1 / -1;
+  font-size: 13px; color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 10px; padding: 12px 14px;
+}
+
+/* =========================================================
    Dock: navegação de baixo
    ========================================================= */
 .dock {
@@ -516,7 +582,14 @@ p.todo { display: block; padding: 10px 14px; }
   max-width: calc(100vw - 24px);
 }
 
-.dock-tabs { display: flex; gap: 2px; }
+/* Com 6 abas, no celular a lista rola na horizontal em vez de estourar a tela */
+.dock-tabs {
+  display: flex; gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.dock-tabs::-webkit-scrollbar { display: none; }
 .dock-tabs a {
   display: block;
   padding: 7px 14px;
@@ -555,6 +628,7 @@ p.todo { display: block; padding: 10px 14px; }
   .topbar-right { gap: 14px; }
   .fact { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .features { grid-template-columns: minmax(0, 1fr); }
+  .cv-skills div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .dock-tabs a { padding: 7px 9px; font-size: 13px; }
   .dock-arrow { width: 30px; }
   .shot-phone { width: 28%; }

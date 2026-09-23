@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Currículo · Guilherme Waldemir</title>
+  <meta name="description" content="Currículo de Guilherme Waldemir, estudante de Ciência da Computação.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Página feita para impressão: A4, tema claro sempre, uma página só. */
+    @page { size: A4; margin: 13mm 15mm; }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f4f2;
+      color: #161616;
+      font: 400 10.5pt/1.45 "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .folha {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto;
+      padding: 16mm 15mm;
+      background: #fff;
+      box-shadow: 0 10px 40px -20px rgba(0,0,0,.4);
+    }
+
+    h1 { font-size: 22pt; letter-spacing: -0.03em; margin: 0; }
+    .cargo { font-size: 11pt; color: #444; margin: 3px 0 0; }
+    .contatos {
+      display: flex; flex-wrap: wrap; gap: 4px 14px;
+      margin: 10px 0 0; padding: 0; list-style: none;
+      font-size: 9.5pt;
+    }
+    .contatos a { color: #1c3fbf; text-decoration: none; }
+
+    h2 {
+      font-size: 9pt; text-transform: uppercase; letter-spacing: .08em;
+      color: #6a6a66; font-weight: 600;
+      margin: 15px 0 7px; padding-bottom: 4px;
+      border-bottom: 1px solid #e3e3df;
+    }
+
+    .item { margin-bottom: 11px; }
+    .item:last-child { margin-bottom: 0; }
+    .titulo { font-weight: 600; font-size: 10.5pt; }
+    .sub { color: #555; font-size: 9.5pt; }
+    .tech { font-size: 8.8pt; color: #6a6a66; }
+    p { margin: 3px 0 0; color: #333; }
+
+    ul.bullets { margin: 4px 0 0; padding-left: 16px; color: #333; }
+    ul.bullets li { margin-bottom: 2px; }
+
+    .skills { display: grid; grid-template-columns: 42mm 1fr; gap: 3px 10px; font-size: 9.8pt; }
+    .skills dt { color: #6a6a66; }
+    .skills dd { margin: 0; color: #222; }
+
+    .rodape { margin-top: 16px; font-size: 8.5pt; color: #8a8a85; text-align: center; }
+
+    @media print {
+      body { background: #fff; }
+      .folha { margin: 0; padding: 0; min-height: auto; box-shadow: none; max-width: none; }
+      a { color: #1c3fbf; }
+    }
+  </style>
+</head>
+<body>
+  <main class="folha">
+    <header>
+      <h1>Guilherme Waldemir da Silva Barros</h1>
+      <p class="cargo">Estudante de Ciência da Computação · Desenvolvimento de software e análise</p>
+      <ul class="contatos">
+        <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
+        <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
+        <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
+      </ul>
+    </header>
+
+    <section>
+      <h2>Objetivo</h2>
+      <p>
+        Primeira oportunidade como estagiário ou desenvolvedor júnior, em desenvolvimento de
+        software ou análise. Busco um time onde eu possa aprender com código de produção e
+        contribuir desde cedo.
+      </p>
+    </section>
+
+    <section>
+      <h2>Formação</h2>
+      <div class="item">
+        <div class="titulo">Bacharelado em Ciência da Computação</div>
+        <div class="sub">Universidade São Judas Tadeu · cursando o 2º semestre</div>
+        <p>Disciplinas atuais: Matemática Computacional Aplicada; Projeto e Engenharia de Software.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Competências técnicas</h2>
+      <dl class="skills">
+        <dt>Linguagens</dt><dd>Java, TypeScript, JavaScript, Python, SQL, HTML, CSS</dd>
+        <dt>Bibliotecas e frameworks</dt><dd>React, Vite, Flask, Swing/AWT</dd>
+        <dt>Bancos de dados</dt><dd>SQLite, PostgreSQL (Supabase)</dd>
+        <dt>Testes</dt><dd>JUnit 5, pytest</dd>
+        <dt>Ferramentas</dt><dd>Git, GitHub, GitHub Actions, Maven, Netlify, Render</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Projetos</h2>
+
+      <div class="item">
+        <div class="titulo">Tracker Responsável</div>
+        <div class="tech">Java 21 · Swing/AWT · SQLite · Maven · JUnit 5 — github.com/GuilhermeWaldemir/tracker-responsavel</div>
+        <ul class="bullets">
+          <li>App para Windows que monitora processos em segundo plano e avisa, antes de cada sessão de jogo, quantas horas já foram jogadas na semana.</li>
+          <li>Registro de sessões em SQLite a cada verificação, sem contagem em dobro entre jogos e ignorando o tempo em suspensão.</li>
+          <li>Testes em JUnit 5 com a leitura de processos injetada, cobrindo regras de sessão, suspensão do PC e virada de semana.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="titulo">Painel Pessoal</div>
+        <div class="tech">React 19 · TypeScript · Vite · Supabase · PWA — painel-guilherme.netlify.app</div>
+        <ul class="bullets">
+          <li>Painel diário mobile-first com tarefas, estudos, livros, agenda e clima, instalável como app.</li>
+          <li>Login e sincronização em tempo real entre aparelhos, com atualização otimista e cache local.</li>
+          <li>Segurança por linha (RLS) no PostgreSQL, garantindo que cada usuário acesse apenas os próprios dados.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="titulo">Monitor de Preços</div>
+        <div class="tech">Python 3.13 · Flask · SQLite · pytest · GitHub Actions — github.com/GuilhermeWaldemir/monitor-de-precos</div>
+        <ul class="bullets">
+          <li>Compara o preço do mesmo produto em várias lojas, lendo os dados por JSON-LD (schema.org) ou HTML.</li>
+          <li>Valida se as páginas são do mesmo item pelo código do fabricante/EAN e guarda o histórico com gráfico.</li>
+          <li>Testes rodam sem acesso à internet, a partir de páginas reais salvas no repositório, executados no GitHub Actions.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

@@ -20,7 +20,32 @@
 // ============================================================
 
 const CERTIFICADOS = [
-  // Cole os seus certificados aqui.
+  {
+    titulo: "Especialista em Algoritmos e Programação",
+    instituicao: "Universidade São Judas Tadeu",
+    data: "jul. 2026",
+    carga: "160h",
+    tags: ["Algoritmos", "Lógica de programação"],
+    link: "https://cloudapp.animaeducacao.com.br/validador-documento/?code=9c71fd13467d48c1bad84f64b73753d5",
+    arquivo: "assets/certificados/algoritmos-e-programacao-usjt.pdf",
+  },
+  {
+    titulo: "Fundamentos em UX Design e Interação Humano-Computador",
+    instituicao: "Universidade São Judas Tadeu",
+    data: "jul. 2026",
+    carga: "160h",
+    tags: ["UX", "IHC"],
+    link: "https://cloudapp.animaeducacao.com.br/validador-documento/?code=d6deef279d6444d98303a17f0bfc889e",
+    arquivo: "assets/certificados/ihc-ux-usjt.pdf",
+  },
+  {
+    titulo: "Python",
+    instituicao: "Santander Open Academy",
+    data: "ago. 2026",
+    carga: "8h",
+    tags: ["Python"],
+    arquivo: "assets/certificados/python.pdf",
+  },
 ];
 
 // ------------------------------------------------------------

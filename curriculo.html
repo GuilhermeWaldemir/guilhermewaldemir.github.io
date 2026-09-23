@@ -10,14 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Página feita para impressão: A4, tema claro sempre, uma página só. */
-    @page { size: A4; margin: 13mm 15mm; }
+    @page { size: A4; margin: 11mm 14mm; }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
       background: #f4f4f2;
       color: #161616;
-      font: 400 10.5pt/1.45 "Inter", system-ui, sans-serif;
+      font: 400 9.9pt/1.38 "Inter", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     .folha {
@@ -29,33 +29,33 @@
       box-shadow: 0 10px 40px -20px rgba(0,0,0,.4);
     }
 
-    h1 { font-size: 22pt; letter-spacing: -0.03em; margin: 0; }
-    .cargo { font-size: 11pt; color: #444; margin: 3px 0 0; }
+    h1 { font-size: 20pt; letter-spacing: -0.03em; margin: 0; }
+    .cargo { font-size: 10.5pt; color: #444; margin: 2px 0 0; }
     .contatos {
       display: flex; flex-wrap: wrap; gap: 4px 14px;
-      margin: 10px 0 0; padding: 0; list-style: none;
-      font-size: 9.5pt;
+      margin: 7px 0 0; padding: 0; list-style: none;
+      font-size: 9.2pt;
     }
     .contatos a { color: #1c3fbf; text-decoration: none; }
 
     h2 {
       font-size: 9pt; text-transform: uppercase; letter-spacing: .08em;
       color: #6a6a66; font-weight: 600;
-      margin: 15px 0 7px; padding-bottom: 4px;
+      margin: 11px 0 6px; padding-bottom: 3px;
       border-bottom: 1px solid #e3e3df;
     }
 
-    .item { margin-bottom: 11px; }
+    .item { margin-bottom: 8px; }
     .item:last-child { margin-bottom: 0; }
-    .titulo { font-weight: 600; font-size: 10.5pt; }
+    .titulo { font-weight: 600; font-size: 10pt; }
     .sub { color: #555; font-size: 9.5pt; }
     .tech { font-size: 8.8pt; color: #6a6a66; }
     p { margin: 3px 0 0; color: #333; }
 
     ul.bullets { margin: 4px 0 0; padding-left: 16px; color: #333; }
-    ul.bullets li { margin-bottom: 2px; }
+    ul.bullets li { margin-bottom: 1px; }
 
-    .skills { display: grid; grid-template-columns: 42mm 1fr; gap: 3px 10px; font-size: 9.8pt; }
+    .skills { display: grid; grid-template-columns: 42mm 1fr; gap: 2px 10px; font-size: 9.4pt; }
     .skills dt { color: #6a6a66; }
     .skills dd { margin: 0; color: #222; }
 
@@ -75,6 +75,7 @@
       <p class="cargo">Estudante de Ciência da Computação · Desenvolvimento de software e análise</p>
       <ul class="contatos">
         <li><a href="mailto:guilhermewaldemir@outlook.com">guilhermewaldemir@outlook.com</a></li>
+        <li><a href="tel:+5511959510657">(11) 95951-0657</a></li>
         <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
         <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
         <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
@@ -107,6 +108,7 @@
         <dt>Bancos de dados</dt><dd>SQLite, PostgreSQL (Supabase)</dd>
         <dt>Testes</dt><dd>JUnit 5, pytest</dd>
         <dt>Ferramentas</dt><dd>Git, GitHub, GitHub Actions, Maven, Netlify, Render</dd>
+        <dt>Idiomas</dt><dd>Português (nativo); inglês — nível B1 (intermediário)</dd>
       </dl>
     </section>
 
@@ -142,6 +144,15 @@
           <li>Testes rodam sem acesso à internet, a partir de páginas reais salvas no repositório, executados no GitHub Actions.</li>
         </ul>
       </div>
+    </section>
+
+    <section>
+      <h2>Cursos e certificações</h2>
+      <ul class="bullets certs">
+        <li><strong>Especialista em Algoritmos e Programação</strong> — Universidade São Judas Tadeu · 160h · jul. 2026</li>
+        <li><strong>Fundamentos em UX Design e Interação Humano-Computador</strong> — Universidade São Judas Tadeu · 160h · jul. 2026</li>
+        <li><strong>Python</strong> — Santander Open Academy · 8h · ago. 2026</li>
+      </ul>
     </section>
 
   </main>

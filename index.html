@@ -286,7 +286,7 @@
           </p>
 
           <ul class="tags" aria-label="Tecnologias">
-            <li>Python 3.13</li><li>Flask</li><li>Jinja2</li><li>SQLite</li><li>Chart.js</li><li>pytest</li><li>GitHub Actions</li><li>Render</li>
+            <li>Python 3.13</li><li>Flask</li><li>Jinja2</li><li>SQLite</li><li>OAuth 2.0</li><li>Chart.js</li><li>pytest</li><li>GitHub Actions</li><li>Render</li>
           </ul>
 
           <div class="langs">
@@ -352,7 +352,7 @@
             <h3>Como funciona</h3>
             <ol class="steps">
               <li>Você organiza os produtos em categorias e cadastra o link de cada loja, com o código do fabricante ou EAN.</li>
-              <li>O programa baixa cada página e lê preço, foto e estoque pelo bloco <strong>JSON-LD</strong> (padrão schema.org) ou, na Amazon, pelo HTML.</li>
+              <li>Cada loja é lida do jeito que ela permite: pelo bloco <strong>JSON-LD</strong> (padrão schema.org) na maioria, pelo HTML na Amazon e pela <strong>API oficial</strong> no Mercado Livre.</li>
               <li>Ele confere se cada página é mesmo aquele produto, comparando o código.</li>
               <li>Cada verificação vai para o histórico no SQLite. A tela mostra as lojas do mais barato ao mais caro, um gráfico da variação de preço e produtos parecidos.</li>
             </ol>
@@ -365,9 +365,34 @@
               <tbody>
                 <tr><td>KaBuM!, Terabyte</td><td>Automática (JSON-LD)</td></tr>
                 <tr><td>Amazon</td><td>Automática (HTML)</td></tr>
-                <tr><td>Mercado Livre, Magazine Luiza</td><td>Manual (bloqueiam robôs)</td></tr>
+                <tr><td>Mercado Livre</td><td>Automática (API oficial, com OAuth 2.0)</td></tr>
+                <tr><td>Magazine Luiza</td><td>Manual (bloqueia robôs)</td></tr>
               </tbody>
             </table>
+          </section>
+
+          <section class="block">
+            <h3>Integração com a API do Mercado Livre</h3>
+            <p>
+              O Mercado Livre bloqueia programas que leem as páginas dele. Em vez de tentar
+              driblar o bloqueio, o projeto usa a <strong>API oficial</strong> que a própria loja
+              oferece. É o caminho legítimo, e trouxe o problema mais interessante do projeto:
+              autenticação.
+            </p>
+            <ol class="steps">
+              <li>O app é registrado no portal de desenvolvedores; o <em>App ID</em> e a chave secreta ficam em variáveis de ambiente, fora do código.</li>
+              <li>Em Configurações, o botão “Conectar” leva ao Mercado Livre, que pede a autorização e devolve um <code>code</code> de vida curta.</li>
+              <li>O site troca esse código por um <code>access_token</code> (válido por 6 horas) e um <code>refresh_token</code>, guardados no banco.</li>
+              <li>A partir daí, cada leitura envia o token no cabeçalho <code>Authorization</code>, e o token é renovado sozinho um pouco antes de expirar.</li>
+            </ol>
+            <ul class="points">
+              <li><strong>PKCE:</strong> o pedido de autorização manda o resumo (SHA-256) de um segredo sorteado na hora, e só quem tem o segredo original consegue trocar o código pelo token. Isso protege mesmo que alguém intercepte o código no meio do caminho.</li>
+              <li><strong>Parâmetro <code>state</code>:</strong> um valor aleatório guardado na sessão e conferido na volta, para garantir que a resposta veio do pedido que o site fez.</li>
+              <li><strong>O <code>refresh_token</code> é de uso único:</strong> cada renovação devolve um par novo, que precisa ser salvo na hora, senão o acesso se perde.</li>
+              <li><strong>Funciona sem login do usuário:</strong> o site também obtém um token da própria aplicação, então a conexão pessoal é opcional e a leitura nunca para por falta dela.</li>
+              <li><strong>Anúncio ou catálogo:</strong> um link pode ser a oferta de um vendedor (<code>/MLB-123</code>) ou uma página de catálogo com vários (<code>/p/MLB123</code>). No catálogo sem oferta em destaque, o site percorre os vendedores e fica com o <strong>menor preço entre os produtos novos</strong>.</li>
+              <li><strong>Testado sem chamar a API:</strong> as funções recebem de fora quem faz as requisições, então os 39 testes rodam com respostas simuladas, sem internet e sem gastar cota.</li>
+            </ul>
           </section>
 
           <section class="block">

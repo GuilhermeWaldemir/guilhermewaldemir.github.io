@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume · Guilherme Waldemir</title>
+  <meta name="description" content="Resume of Guilherme Waldemir, Computer Science student.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Print page: A4, always light theme, a single page. Portuguese version: curriculo.html */
+    @page { size: A4; margin: 11mm 14mm; }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f4f2;
+      color: #161616;
+      font: 400 9.9pt/1.38 "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .folha {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto;
+      padding: 16mm 15mm;
+      background: #fff;
+      box-shadow: 0 10px 40px -20px rgba(0,0,0,.4);
+    }
+
+    h1 { font-size: 20pt; letter-spacing: -0.03em; margin: 0; }
+    .cargo { font-size: 10.5pt; color: #444; margin: 2px 0 0; }
+    .contatos {
+      display: flex; flex-wrap: wrap; gap: 4px 14px;
+      margin: 7px 0 0; padding: 0; list-style: none;
+      font-size: 9.2pt;
+    }
+    .contatos a { color: #1c3fbf; text-decoration: none; }
+
+    h2 {
+      font-size: 9pt; text-transform: uppercase; letter-spacing: .08em;
+      color: #6a6a66; font-weight: 600;
+      margin: 11px 0 6px; padding-bottom: 3px;
+      border-bottom: 1px solid #e3e3df;
+    }
+
+    .item { margin-bottom: 8px; }
+    .item:last-child { margin-bottom: 0; }
+    .titulo { font-weight: 600; font-size: 10pt; }
+    .sub { color: #555; font-size: 9.5pt; }
+    .tech { font-size: 8.8pt; color: #6a6a66; }
+    p { margin: 3px 0 0; color: #333; }
+
+    ul.bullets { margin: 4px 0 0; padding-left: 16px; color: #333; }
+    ul.bullets li { margin-bottom: 1px; }
+
+    .skills { display: grid; grid-template-columns: 42mm 1fr; gap: 2px 10px; font-size: 9.4pt; }
+    .skills dt { color: #6a6a66; }
+    .skills dd { margin: 0; color: #222; }
+
+    .rodape { margin-top: 16px; font-size: 8.5pt; color: #8a8a85; text-align: center; }
+
+    @media print {
+      body { background: #fff; }
+      .folha { margin: 0; padding: 0; min-height: auto; box-shadow: none; max-width: none; }
+      a { color: #1c3fbf; }
+    }
+  </style>
+</head>
+<body>
+  <main class="folha">
+    <header>
+      <h1>Guilherme Waldemir da Silva Barros</h1>
+      <p class="cargo">Computer Science Student · Software Development and Data Analysis</p>
+      <ul class="contatos">
+        <li>São Paulo, Brazil</li>
+        <li><a href="mailto:guilhermewaldemir@outlook.com">guilhermewaldemir@outlook.com</a></li>
+        <li><a href="tel:+5511959510657">+55 11 95951-0657</a></li>
+        <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
+        <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
+        <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
+      </ul>
+    </header>
+
+    <section>
+      <h2>Objective</h2>
+      <p>
+        Internship in software development or data analysis, on a team where I can learn from
+        production code and contribute early. Available 30 hours/week, mornings or afternoons.
+      </p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="titulo">Bachelor of Science in Computer Science</div>
+        <div class="sub">São Judas Tadeu University · 2nd semester · Expected graduation: Dec 2030</div>
+        <p>Current coursework: Applied Computational Mathematics; Software Design and Engineering.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Java, Python, SQL</dd>
+        <dt>Libraries and frameworks</dt><dd>Flask, Swing/AWT</dd>
+        <dt>Databases</dt><dd>SQLite, PostgreSQL (Supabase)</dd>
+        <dt>Testing</dt><dd>JUnit 5, pytest</dd>
+        <dt>Tools</dt><dd>Git, GitHub, GitHub Actions, Maven, Netlify, Render</dd>
+        <dt>Spoken languages</dt><dd>Portuguese (native); English (intermediate, B1)</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <div class="item">
+        <div class="titulo">Tracker Responsável <span class="sub">(Responsible Gaming Tracker)</span></div>
+        <div class="tech">Java 21 · Swing/AWT · SQLite · Maven · JUnit 5 — github.com/GuilhermeWaldemir/tracker-responsavel</div>
+        <ul class="bullets">
+          <li>Built a Windows desktop app that detects games running in the background and shows, before each session, how many hours were already played that week.</li>
+          <li>Designed session logging in SQLite that avoids double-counting overlapping games and excludes time while the PC is asleep.</li>
+          <li>Wrote 19 JUnit 5 tests with injected process reading, covering sleep and week-rollover edge cases.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="titulo">Painel Pessoal <span class="sub">(Personal Dashboard)</span></div>
+        <div class="tech">React 19 · TypeScript · Vite · Supabase · PWA — painel-guilherme.netlify.app</div>
+        <ul class="bullets">
+          <li>Built a mobile-first daily dashboard (tasks, study log, books, calendar and weather), installable as a PWA and deployed on Netlify.</li>
+          <li>Implemented authentication and real-time sync across devices with Supabase, using optimistic updates and a local cache.</li>
+          <li>Secured user data with PostgreSQL Row Level Security (RLS), so each user can access only their own records.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="titulo">Monitor de Preços <span class="sub">(Price Tracker)</span></div>
+        <div class="tech">Python 3.13 · Flask · SQLite · pytest · GitHub Actions · Render — github.com/GuilhermeWaldemir/monitor-de-precos</div>
+        <ul class="bullets">
+          <li>Built a web app that compares the price of the same product across 5 Brazilian stores (Amazon, Mercado Livre, KaBuM! and others), parsing JSON-LD (schema.org) or HTML.</li>
+          <li>Implemented same-item matching by manufacturer part number/EAN, price history charts and email alerts.</li>
+          <li>Wrote 308 pytest tests that run offline against saved real store pages on every push via GitHub Actions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Courses and Certifications</h2>
+      <ul class="bullets certs">
+        <li><strong>Algorithms and Programming Specialist</strong> — São Judas Tadeu University · 160 h · Jul 2026</li>
+        <li><strong>Fundamentals of UX Design and Human-Computer Interaction</strong> — São Judas Tadeu University · 160 h · Jul 2026</li>
+        <li><strong>Python</strong> — Santander Open Academy · 8 h · Aug 2026</li>
+      </ul>
+    </section>
+
+  </main>
+</body>
+</html>

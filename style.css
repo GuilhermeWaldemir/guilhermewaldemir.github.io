@@ -249,6 +249,9 @@ p.todo { display: block; padding: 10px 14px; }
 .fact dd { font-size: 14.5px; color: var(--text-2); }
 .fact dd strong { color: var(--text); }
 
+.link { color: var(--accent); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
 .hint {
   position: absolute; left: var(--gutter); bottom: calc(96px + env(safe-area-inset-bottom));
   display: flex; align-items: center; gap: 10px;

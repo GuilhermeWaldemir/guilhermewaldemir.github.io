@@ -53,7 +53,6 @@ const CERTIFICADOS = [
 // ------------------------------------------------------------
 (function montarCertificados() {
   const grid = document.getElementById("cert-grid");
-  const contagem = document.getElementById("cert-contagem");
   if (!grid) return;
 
   if (CERTIFICADOS.length === 0) {
@@ -64,9 +63,6 @@ const CERTIFICADOS = [
     }
     return;
   }
-
-  contagem.textContent =
-    CERTIFICADOS.length === 1 ? "1 certificado" : `${CERTIFICADOS.length} certificados`;
 
   // textContent (em vez de innerHTML) evita que um texto com < ou >
   // quebre a página ou injete HTML indesejado.

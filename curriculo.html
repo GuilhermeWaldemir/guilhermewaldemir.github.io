@@ -9,152 +9,314 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Página feita para impressão: A4, tema claro sempre, uma página só. */
-    @page { size: A4; margin: 11mm 14mm; }
+    /* Currículo em duas colunas, para impressão em A4.
+       Tema claro sempre: papel é branco. */
+    @page { size: A4; margin: 0; }
+
+    :root {
+      --escuro: #2f3349;   /* faixa do topo e títulos */
+      --lateral: #edeef2;  /* fundo da barra lateral */
+      --texto: #22242e;
+      --suave: #5b5f70;
+      --linha: #d3d5dd;
+      --largura-lateral: 34%;
+    }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      background: #f4f4f2;
-      color: #161616;
-      font: 400 9.9pt/1.38 "Inter", system-ui, sans-serif;
+      background: #9a9aa2;
+      color: var(--texto);
+      font: 400 9.6pt/1.4 "Inter", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+
     .folha {
-      max-width: 210mm;
+      width: 210mm;
       min-height: 297mm;
-      margin: 24px auto;
-      padding: 16mm 15mm;
+      margin: 20px auto;
       background: #fff;
-      box-shadow: 0 10px 40px -20px rgba(0,0,0,.4);
+      /* Pinta a faixa da barra lateral no fundo da página inteira: garante que
+         ela vá até o pé do papel, mesmo onde o conteúdo termina antes. */
+      background-image: linear-gradient(to right, var(--lateral) 0 var(--largura-lateral), #fff var(--largura-lateral));
+      box-shadow: 0 10px 40px -16px rgba(0, 0, 0, .5);
+      display: grid;
+      grid-template-columns: var(--largura-lateral) 1fr;
+      grid-template-rows: auto 1fr;
+      /* Sem isso, o Chrome remove os fundos coloridos ao gerar o PDF. */
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
-    h1 { font-size: 20pt; letter-spacing: -0.03em; margin: 0; }
-    .cargo { font-size: 10.5pt; color: #444; margin: 2px 0 0; }
-    .contatos {
-      display: flex; flex-wrap: wrap; gap: 4px 14px;
-      margin: 7px 0 0; padding: 0; list-style: none;
-      font-size: 9.2pt;
+    /* ---------- topo ---------- */
+    .marca {
+      background: var(--escuro);
+      display: flex; align-items: center; justify-content: center;
+      padding: 11mm 0 8mm;
     }
-    .contatos a { color: #1c3fbf; text-decoration: none; }
-
-    h2 {
-      font-size: 9pt; text-transform: uppercase; letter-spacing: .08em;
-      color: #6a6a66; font-weight: 600;
-      margin: 11px 0 6px; padding-bottom: 3px;
-      border-bottom: 1px solid #e3e3df;
+    .monograma {
+      width: 32mm; height: 32mm;
+      border-radius: 50%;
+      background: var(--lateral);
+      border: 1.2mm solid #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 19pt; letter-spacing: .04em;
+      color: var(--escuro);
     }
 
-    .item { margin-bottom: 8px; }
+    .titulo-topo {
+      background: var(--escuro);
+      color: #fff;
+      padding: 12mm 12mm 8mm;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .titulo-topo h1 {
+      margin: 0;
+      font-size: 22pt; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .titulo-topo p {
+      margin: 3mm 0 0;
+      font-size: 10.5pt; letter-spacing: .14em; text-transform: uppercase;
+      color: #bfc3d4;
+    }
+
+    /* ---------- barra lateral ---------- */
+    .lateral { padding: 8mm 7mm 8mm; }
+
+    .lateral h2 {
+      margin: 0 0 3mm;
+      font-size: 10.5pt; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+    }
+    .lateral section + section { margin-top: 6mm; }
+    .lateral hr {
+      border: 0; border-top: 1px solid var(--linha);
+      margin: 0 0 3mm;
+    }
+
+    .contato { list-style: none; margin: 0; padding: 0; font-size: 8.8pt; }
+    .contato li { margin-bottom: 2.2mm; word-break: break-word; }
+    .contato a { color: inherit; text-decoration: none; }
+
+    .lista { list-style: none; margin: 0; padding: 0; font-size: 8.8pt; }
+    .lista li { position: relative; padding-left: 4mm; margin-bottom: 1.6mm; }
+    .lista li::before {
+      content: ""; position: absolute; left: 0; top: 1.35mm;
+      width: 1.6mm; height: 1.6mm; border-radius: 50%;
+      background: var(--escuro);
+    }
+
+    .cert { font-size: 8.6pt; margin-bottom: 3mm; }
+    .cert b { display: block; font-weight: 600; }
+    .cert span { color: var(--suave); }
+
+    /* ---------- coluna principal ---------- */
+    .principal { padding: 8mm 11mm 8mm 9mm; }
+
+    .principal section + section { margin-top: 5mm; }
+
+    .cabeca { display: flex; align-items: center; gap: 3mm; }
+    .cabeca .icone {
+      width: 6.5mm; height: 6.5mm; border-radius: 50%;
+      background: var(--escuro);
+      display: flex; align-items: center; justify-content: center;
+      flex: none;
+    }
+    .cabeca .icone svg { width: 3.6mm; height: 3.6mm; fill: #fff; }
+    .cabeca h2 {
+      margin: 0;
+      font-size: 12pt; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .principal hr {
+      border: 0; border-top: 1px solid var(--linha);
+      margin: 2.2mm 0 3mm;
+    }
+
+    .principal p { margin: 0; color: #3d4050; }
+
+    .item { margin-bottom: 3.4mm; }
     .item:last-child { margin-bottom: 0; }
-    .titulo { font-weight: 600; font-size: 10pt; }
-    .sub { color: #555; font-size: 9.5pt; }
-    .tech { font-size: 8.8pt; color: #6a6a66; }
-    p { margin: 3px 0 0; color: #333; }
+    .item-topo { display: flex; justify-content: space-between; gap: 4mm; align-items: baseline; }
+    .item-titulo { font-weight: 700; font-size: 10pt; }
+    .item-data { font-size: 8.6pt; color: var(--suave); white-space: nowrap; }
+    .item-sub { font-size: 8.8pt; color: var(--suave); margin-top: .6mm; }
 
-    ul.bullets { margin: 4px 0 0; padding-left: 16px; color: #333; }
-    ul.bullets li { margin-bottom: 1px; }
+    .bullets { margin: 1.6mm 0 0; padding-left: 4.5mm; }
+    .bullets li { margin-bottom: 1mm; color: #3d4050; }
 
-    .skills { display: grid; grid-template-columns: 42mm 1fr; gap: 2px 10px; font-size: 9.4pt; }
-    .skills dt { color: #6a6a66; }
-    .skills dd { margin: 0; color: #222; }
-
-    .rodape { margin-top: 16px; font-size: 8.5pt; color: #8a8a85; text-align: center; }
+    /* A folha tem largura fixa de A4 (210mm). Em telas menores, diminui a
+       escala para caber, em vez de forçar rolagem lateral. */
+    @media screen and (max-width: 860px) { .folha { zoom: .85; } }
+    @media screen and (max-width: 720px) { .folha { zoom: .68; } }
+    @media screen and (max-width: 560px) { .folha { zoom: .5; } }
+    @media screen and (max-width: 420px) { .folha { zoom: .42; } }
 
     @media print {
       body { background: #fff; }
-      .folha { margin: 0; padding: 0; min-height: auto; box-shadow: none; max-width: none; }
-      a { color: #1c3fbf; }
+      /* Altura um pouco menor que os 297mm do A4: o arredondamento do
+         navegador empurrava uma segunda página em branco. */
+      .folha { margin: 0; box-shadow: none; width: auto; min-height: 0; height: 296mm; }
     }
   </style>
 </head>
 <body>
   <main class="folha">
-    <header>
-      <h1>Guilherme Waldemir da Silva Barros</h1>
-      <p class="cargo">Estudante de Ciência da Computação · Desenvolvimento de software e análise</p>
-      <ul class="contatos">
-        <li>São Paulo – SP</li>
-        <li><a href="mailto:guilhermewaldemir@outlook.com">guilhermewaldemir@outlook.com</a></li>
-        <li><a href="tel:+5511959510657">(11) 95951-0657</a></li>
-        <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
-        <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
-        <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
-      </ul>
+    <div class="marca">
+      <div class="monograma">GW</div>
+    </div>
+
+    <header class="titulo-topo">
+      <h1>Guilherme Waldemir</h1>
+      <p>Estudante de Ciência da Computação</p>
     </header>
 
-    <section>
-      <h2>Objetivo</h2>
-      <p>
-        Estágio em desenvolvimento de software ou análise, em um time onde eu aprenda com
-        código de produção e contribua desde cedo. Disponível para estágio de 6h, manhã ou tarde.
-      </p>
-    </section>
-
-    <section>
-      <h2>Formação</h2>
-      <div class="item">
-        <div class="titulo">Bacharelado em Ciência da Computação</div>
-        <div class="sub">Universidade São Judas Tadeu · 2º semestre · previsão de conclusão: dez. 2030</div>
-        <p>Disciplinas atuais: Matemática Computacional Aplicada; Projeto e Engenharia de Software.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Competências técnicas</h2>
-      <dl class="skills">
-        <dt>Linguagens</dt><dd>Java, Python, SQL</dd>
-        <dt>Bibliotecas e frameworks</dt><dd>Flask, Swing/AWT</dd>
-        <dt>Bancos de dados</dt><dd>SQLite, PostgreSQL (Supabase)</dd>
-        <dt>Testes</dt><dd>JUnit 5, pytest</dd>
-        <dt>Ferramentas</dt><dd>Git, GitHub, GitHub Actions, Maven, Netlify, Render</dd>
-        <dt>Idiomas</dt><dd>Português (nativo); inglês — nível B1 (intermediário)</dd>
-      </dl>
-    </section>
-
-    <section>
-      <h2>Projetos</h2>
-
-      <div class="item">
-        <div class="titulo">Tracker Responsável</div>
-        <div class="tech">Java 21 · Swing/AWT · SQLite · Maven · JUnit 5 — github.com/GuilhermeWaldemir/tracker-responsavel</div>
-        <ul class="bullets">
-          <li>Desenvolvi app desktop para Windows que detecta jogos abertos em segundo plano e avisa, antes de cada sessão, quantas horas já foram jogadas na semana.</li>
-          <li>Modelei o registro de sessões em SQLite sem contagem em dobro entre jogos simultâneos e descontando o tempo com o PC em suspensão.</li>
-          <li>Escrevi 19 testes em JUnit 5 com a leitura de processos injetada, cobrindo suspensão e virada de semana.</li>
+    <aside class="lateral">
+      <section>
+        <h2>Contato</h2>
+        <hr>
+        <ul class="contato">
+          <li><a href="mailto:guilhermewaldemir@outlook.com">guilhermewaldemir@outlook.com</a></li>
+          <li><a href="tel:+5511959510657">(11) 95951-0657</a></li>
+          <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
+          <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
+          <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
         </ul>
-      </div>
+      </section>
 
-      <div class="item">
-        <div class="titulo">Painel Pessoal</div>
-        <div class="tech">React 19 · TypeScript · Vite · Supabase · PWA — painel-guilherme.netlify.app</div>
-        <ul class="bullets">
-          <li>Construí painel diário mobile-first (tarefas, estudos, livros, agenda e clima), instalável como app (PWA) e publicado na Netlify.</li>
-          <li>Implementei login e sincronização em tempo real entre aparelhos com Supabase, usando atualização otimista e cache local.</li>
-          <li>Protegi os dados com segurança por linha (RLS) no PostgreSQL, garantindo que cada usuário acesse apenas os próprios registros.</li>
+      <section>
+        <h2>Competências</h2>
+        <hr>
+        <ul class="lista">
+          <li>Java</li>
+          <li>TypeScript e JavaScript</li>
+          <li>Python</li>
+          <li>SQL</li>
+          <li>React e Vite</li>
+          <li>Flask</li>
+          <li>SQLite e PostgreSQL</li>
+          <li>Testes (JUnit 5, pytest)</li>
+          <li>Git, GitHub e GitHub Actions</li>
+          <li>HTML e CSS</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="item">
-        <div class="titulo">Monitor de Preços</div>
-        <div class="tech">Python 3.13 · Flask · SQLite · pytest · GitHub Actions · Render — github.com/GuilhermeWaldemir/monitor-de-precos</div>
-        <ul class="bullets">
-          <li>Desenvolvi app web que compara o preço do mesmo produto em 5 lojas (Amazon, Mercado Livre, KaBuM! e outras), lendo JSON-LD (schema.org) ou HTML.</li>
-          <li>Implementei a validação de mesmo item pelo código do fabricante/EAN, histórico de preços com gráfico e alertas por e-mail.</li>
-          <li>Escrevi 308 testes em pytest que rodam sem internet (páginas reais salvas) a cada push, no GitHub Actions.</li>
+      <section>
+        <h2>Idiomas</h2>
+        <hr>
+        <ul class="lista">
+          <li>Português (nativo)</li>
+          <li>Inglês (B1, intermediário)</li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Cursos e certificações</h2>
-      <ul class="bullets certs">
-        <li><strong>Especialista em Algoritmos e Programação</strong> — São Judas · 160h · jul. 2026</li>
-        <li><strong>Fundamentos em UX Design e Interação Humano-Computador</strong> — São Judas · 160h · jul. 2026</li>
-        <li><strong>Python</strong> — Santander Open Academy · 8h · ago. 2026</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Certificações</h2>
+        <hr>
+        <div class="cert">
+          <b>Especialista em Algoritmos e Programação</b>
+          <span>Universidade São Judas Tadeu · 160h · 2026</span>
+        </div>
+        <div class="cert">
+          <b>Fundamentos em UX Design e Interação Humano-Computador</b>
+          <span>Universidade São Judas Tadeu · 160h · 2026</span>
+        </div>
+        <div class="cert">
+          <b>Python</b>
+          <span>Santander Open Academy · 8h · 2026</span>
+        </div>
+      </section>
+    </aside>
 
+    <div class="principal">
+      <section>
+        <div class="cabeca">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.6-9 5.8V22h18v-2.2c0-3.2-4-5.8-9-5.8Z"/></svg>
+          </span>
+          <h2>Perfil</h2>
+        </div>
+        <hr>
+        <p>
+          Estudante de Ciência da Computação em busca da primeira oportunidade como estagiário
+          ou desenvolvedor júnior. Aprendo construindo: meus projetos nasceram de problemas do
+          meu dia a dia e estão publicados, com testes automatizados e documentação. Busco um
+          time onde eu possa aprender com código de produção e contribuir desde cedo.
+        </p>
+      </section>
+
+      <section>
+        <div class="cabeca">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z"/></svg>
+          </span>
+          <h2>Projetos</h2>
+        </div>
+        <hr>
+
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Tracker Responsável</span>
+            <span class="item-data">2026</span>
+          </div>
+          <div class="item-sub">Java 21 · Swing/AWT · SQLite · Maven · JUnit 5</div>
+          <ul class="bullets">
+            <li>App para Windows que monitora processos em segundo plano e avisa, antes de cada sessão de jogo, quantas horas já foram jogadas na semana.</li>
+            <li>Sessões gravadas em SQLite a cada verificação, sem contagem em dobro entre jogos e ignorando o tempo em suspensão.</li>
+            <li>22 testes em JUnit 5 executados automaticamente no GitHub Actions a cada envio de código.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Painel Pessoal</span>
+            <span class="item-data">2026</span>
+          </div>
+          <div class="item-sub">React 19 · TypeScript · Vite · Supabase · PWA</div>
+          <ul class="bullets">
+            <li>Painel diário mobile-first com tarefas, estudos, livros, agenda e clima, instalável como app e publicado na Netlify.</li>
+            <li>Login e sincronização em tempo real entre aparelhos, com atualização otimista e cache local.</li>
+            <li>Segurança por linha (RLS) no PostgreSQL, garantindo que cada usuário acesse apenas os próprios dados.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Monitor de Preços</span>
+            <span class="item-data">2026</span>
+          </div>
+          <div class="item-sub">Python 3.13 · Flask · SQLite · pytest · GitHub Actions</div>
+          <ul class="bullets">
+            <li>Compara o preço do mesmo produto em várias lojas e avisa por e-mail quando cai 4% ou mais.</li>
+            <li>Integração com a API oficial do Mercado Livre por OAuth 2.0 com PKCE, com renovação automática do token.</li>
+            <li>Testes em pytest rodam sem internet, a partir de páginas reais salvas no repositório.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="cabeca">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3ZM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8Z"/></svg>
+          </span>
+          <h2>Formação</h2>
+        </div>
+        <hr>
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Bacharelado em Ciência da Computação</span>
+            <span class="item-data">2026 – cursando</span>
+          </div>
+          <div class="item-sub">Universidade São Judas Tadeu · 2º semestre</div>
+          <ul class="bullets">
+            <li>Disciplinas atuais: Matemática Computacional Aplicada; Projeto e Engenharia de Software.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
   </main>
 </body>
 </html>

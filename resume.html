@@ -9,153 +9,297 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Print page: A4, always light theme, a single page. Portuguese version: curriculo.html */
-    @page { size: A4; margin: 11mm 14mm; }
+    /* Same layout as curriculo.html, in English. Two columns, A4, print-ready. */
+    @page { size: A4; margin: 0; }
+
+    :root {
+      --escuro: #2f3349;
+      --lateral: #edeef2;
+      --texto: #22242e;
+      --suave: #5b5f70;
+      --linha: #d3d5dd;
+      --largura-lateral: 34%;
+    }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      background: #f4f4f2;
-      color: #161616;
-      font: 400 9.9pt/1.38 "Inter", system-ui, sans-serif;
+      background: #9a9aa2;
+      color: var(--texto);
+      font: 400 9.6pt/1.4 "Inter", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+
     .folha {
-      max-width: 210mm;
+      width: 210mm;
       min-height: 297mm;
-      margin: 24px auto;
-      padding: 16mm 15mm;
+      margin: 20px auto;
       background: #fff;
-      box-shadow: 0 10px 40px -20px rgba(0,0,0,.4);
+      background-image: linear-gradient(to right, var(--lateral) 0 var(--largura-lateral), #fff var(--largura-lateral));
+      box-shadow: 0 10px 40px -16px rgba(0, 0, 0, .5);
+      display: grid;
+      grid-template-columns: var(--largura-lateral) 1fr;
+      grid-template-rows: auto 1fr;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
-    h1 { font-size: 20pt; letter-spacing: -0.03em; margin: 0; }
-    .cargo { font-size: 10.5pt; color: #444; margin: 2px 0 0; }
-    .contatos {
-      display: flex; flex-wrap: wrap; gap: 4px 14px;
-      margin: 7px 0 0; padding: 0; list-style: none;
-      font-size: 9.2pt;
+    .marca {
+      background: var(--escuro);
+      display: flex; align-items: center; justify-content: center;
+      padding: 11mm 0 8mm;
     }
-    .contatos a { color: #1c3fbf; text-decoration: none; }
-
-    h2 {
-      font-size: 9pt; text-transform: uppercase; letter-spacing: .08em;
-      color: #6a6a66; font-weight: 600;
-      margin: 11px 0 6px; padding-bottom: 3px;
-      border-bottom: 1px solid #e3e3df;
+    .monograma {
+      width: 32mm; height: 32mm;
+      border-radius: 50%;
+      background: var(--lateral);
+      border: 1.2mm solid #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 19pt; letter-spacing: .04em;
+      color: var(--escuro);
     }
 
-    .item { margin-bottom: 8px; }
+    .titulo-topo {
+      background: var(--escuro);
+      color: #fff;
+      padding: 12mm 12mm 8mm;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .titulo-topo h1 {
+      margin: 0;
+      font-size: 22pt; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .titulo-topo p {
+      margin: 3mm 0 0;
+      font-size: 10.5pt; letter-spacing: .14em; text-transform: uppercase;
+      color: #bfc3d4;
+    }
+
+    .lateral { padding: 8mm 7mm 8mm; }
+    .lateral h2 {
+      margin: 0 0 3mm;
+      font-size: 10.5pt; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase;
+    }
+    .lateral section + section { margin-top: 6mm; }
+    .lateral hr { border: 0; border-top: 1px solid var(--linha); margin: 0 0 3mm; }
+
+    .contato { list-style: none; margin: 0; padding: 0; font-size: 8.8pt; }
+    .contato li { margin-bottom: 2.2mm; word-break: break-word; }
+    .contato a { color: inherit; text-decoration: none; }
+
+    .lista { list-style: none; margin: 0; padding: 0; font-size: 8.8pt; }
+    .lista li { position: relative; padding-left: 4mm; margin-bottom: 1.6mm; }
+    .lista li::before {
+      content: ""; position: absolute; left: 0; top: 1.35mm;
+      width: 1.6mm; height: 1.6mm; border-radius: 50%;
+      background: var(--escuro);
+    }
+
+    .cert { font-size: 8.6pt; margin-bottom: 3mm; }
+    .cert b { display: block; font-weight: 600; }
+    .cert span { color: var(--suave); }
+
+    .principal { padding: 7mm 11mm 7mm 9mm; }
+    .principal section + section { margin-top: 4.4mm; }
+
+    .cabeca { display: flex; align-items: center; gap: 3mm; }
+    .cabeca .icone {
+      width: 6.5mm; height: 6.5mm; border-radius: 50%;
+      background: var(--escuro);
+      display: flex; align-items: center; justify-content: center;
+      flex: none;
+    }
+    .cabeca .icone svg { width: 3.6mm; height: 3.6mm; fill: #fff; }
+    .cabeca h2 {
+      margin: 0;
+      font-size: 12pt; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .principal hr { border: 0; border-top: 1px solid var(--linha); margin: 2.2mm 0 3mm; }
+    .principal p { margin: 0; color: #3d4050; }
+
+    .item { margin-bottom: 2.9mm; }
     .item:last-child { margin-bottom: 0; }
-    .titulo { font-weight: 600; font-size: 10pt; }
-    .sub { color: #555; font-size: 9.5pt; }
-    .titulo .sub { font-weight: 400; }
-    .tech { font-size: 8.8pt; color: #6a6a66; }
-    p { margin: 3px 0 0; color: #333; }
+    .item-topo { display: flex; justify-content: space-between; gap: 4mm; align-items: baseline; }
+    .item-titulo { font-weight: 700; font-size: 10pt; }
+    .item-data { font-size: 8.6pt; color: var(--suave); white-space: nowrap; }
+    .item-sub { font-size: 8.8pt; color: var(--suave); margin-top: .6mm; }
 
-    ul.bullets { margin: 4px 0 0; padding-left: 16px; color: #333; }
-    ul.bullets li { margin-bottom: 1px; }
+    .bullets { margin: 1.6mm 0 0; padding-left: 4.5mm; }
+    .bullets li { margin-bottom: .7mm; color: #3d4050; }
 
-    .skills { display: grid; grid-template-columns: 42mm 1fr; gap: 2px 10px; font-size: 9.4pt; }
-    .skills dt { color: #6a6a66; }
-    .skills dd { margin: 0; color: #222; }
-
-    .rodape { margin-top: 16px; font-size: 8.5pt; color: #8a8a85; text-align: center; }
+    /* A folha tem largura fixa de A4 (210mm). Em telas menores, diminui a
+       escala para caber, em vez de forçar rolagem lateral. */
+    @media screen and (max-width: 860px) { .folha { zoom: .85; } }
+    @media screen and (max-width: 720px) { .folha { zoom: .68; } }
+    @media screen and (max-width: 560px) { .folha { zoom: .5; } }
+    @media screen and (max-width: 420px) { .folha { zoom: .42; } }
 
     @media print {
       body { background: #fff; }
-      .folha { margin: 0; padding: 0; min-height: auto; box-shadow: none; max-width: none; }
-      a { color: #1c3fbf; }
+      .folha { margin: 0; box-shadow: none; width: auto; min-height: 0; height: 296mm; }
     }
   </style>
 </head>
 <body>
   <main class="folha">
-    <header>
-      <h1>Guilherme Waldemir da Silva Barros</h1>
-      <p class="cargo">Computer Science Student · Software Development and Data Analysis</p>
-      <ul class="contatos">
-        <li>São Paulo, Brazil</li>
-        <li><a href="mailto:guilhermewaldemir@outlook.com">guilhermewaldemir@outlook.com</a></li>
-        <li><a href="tel:+5511959510657">+55 11 95951-0657</a></li>
-        <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
-        <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
-        <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
-      </ul>
+    <div class="marca">
+      <div class="monograma">GW</div>
+    </div>
+
+    <header class="titulo-topo">
+      <h1>Guilherme Waldemir</h1>
+      <p>Computer Science Student</p>
     </header>
 
-    <section>
-      <h2>Objective</h2>
-      <p>
-        Internship in software development or data analysis, on a team where I can learn from
-        production code and contribute early. Available 30 hours/week, mornings or afternoons.
-      </p>
-    </section>
-
-    <section>
-      <h2>Education</h2>
-      <div class="item">
-        <div class="titulo">Bachelor of Science in Computer Science</div>
-        <div class="sub">São Judas Tadeu University · 2nd semester · Expected graduation: Dec 2030</div>
-        <p>Current coursework: Applied Computational Mathematics; Software Design and Engineering.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Technical Skills</h2>
-      <dl class="skills">
-        <dt>Languages</dt><dd>Java, Python, SQL</dd>
-        <dt>Libraries and frameworks</dt><dd>Flask, Swing/AWT</dd>
-        <dt>Databases</dt><dd>SQLite, PostgreSQL (Supabase)</dd>
-        <dt>Testing</dt><dd>JUnit 5, pytest</dd>
-        <dt>Tools</dt><dd>Git, GitHub, GitHub Actions, Maven, Netlify, Render</dd>
-        <dt>Spoken languages</dt><dd>Portuguese (native); English (intermediate, B1)</dd>
-      </dl>
-    </section>
-
-    <section>
-      <h2>Projects</h2>
-
-      <div class="item">
-        <div class="titulo">Tracker Responsável <span class="sub">(Responsible Gaming Tracker)</span></div>
-        <div class="tech">Java 21 · Swing/AWT · SQLite · Maven · JUnit 5 — github.com/GuilhermeWaldemir/tracker-responsavel</div>
-        <ul class="bullets">
-          <li>Built a Windows desktop app that detects games running in the background and shows, before each session, how many hours were already played that week.</li>
-          <li>Designed session logging in SQLite that avoids double-counting overlapping games and excludes time while the PC is asleep.</li>
-          <li>Wrote 19 JUnit 5 tests with injected process reading, covering sleep and week-rollover edge cases.</li>
+    <aside class="lateral">
+      <section>
+        <h2>Contact</h2>
+        <hr>
+        <ul class="contato">
+          <li>São Paulo, Brazil</li>
+          <li><a href="mailto:guilhermewaldemir@outlook.com">guilhermewaldemir@outlook.com</a></li>
+          <li><a href="tel:+5511959510657">+55 11 95951-0657</a></li>
+          <li><a href="https://guilhermewaldemir.github.io">guilhermewaldemir.github.io</a></li>
+          <li><a href="https://github.com/GuilhermeWaldemir">github.com/GuilhermeWaldemir</a></li>
+          <li><a href="https://www.linkedin.com/in/guilherme-waldemir-da-silva-barros-382065347/">linkedin.com/in/guilherme-waldemir-da-silva-barros</a></li>
         </ul>
-      </div>
+      </section>
 
-      <div class="item">
-        <div class="titulo">Painel Pessoal <span class="sub">(Personal Dashboard)</span></div>
-        <div class="tech">React 19 · TypeScript · Vite · Supabase · PWA — painel-guilherme.netlify.app</div>
-        <ul class="bullets">
-          <li>Built a mobile-first daily dashboard (tasks, study log, books, calendar and weather), installable as a PWA and deployed on Netlify.</li>
-          <li>Implemented authentication and real-time sync across devices with Supabase, using optimistic updates and a local cache.</li>
-          <li>Secured user data with PostgreSQL Row Level Security (RLS), so each user can access only their own records.</li>
+      <section>
+        <h2>Skills</h2>
+        <hr>
+        <ul class="lista">
+          <li>Java</li>
+          <li>Python</li>
+          <li>SQL</li>
+          <li>TypeScript and JavaScript</li>
+          <li>React and Vite</li>
+          <li>Flask</li>
+          <li>SQLite and PostgreSQL</li>
+          <li>Testing (JUnit 5, pytest)</li>
+          <li>Git, GitHub and GitHub Actions</li>
+          <li>HTML and CSS</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="item">
-        <div class="titulo">Monitor de Preços <span class="sub">(Price Tracker)</span></div>
-        <div class="tech">Python 3.13 · Flask · SQLite · pytest · GitHub Actions · Render — github.com/GuilhermeWaldemir/monitor-de-precos</div>
-        <ul class="bullets">
-          <li>Built a web app that compares the price of the same product across 5 Brazilian stores (Amazon, Mercado Livre, KaBuM! and others), parsing JSON-LD (schema.org) or HTML.</li>
-          <li>Implemented same-item matching by manufacturer part number/EAN, price history charts and email alerts.</li>
-          <li>Wrote 308 pytest tests that run offline against saved real store pages on every push via GitHub Actions.</li>
+      <section>
+        <h2>Languages</h2>
+        <hr>
+        <ul class="lista">
+          <li>Portuguese (native)</li>
+          <li>English (B1, intermediate)</li>
         </ul>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Courses and Certifications</h2>
-      <ul class="bullets certs">
-        <li><strong>Algorithms and Programming Specialist</strong> — São Judas · 160 h · Jul 2026</li>
-        <li><strong>Fundamentals of UX Design and Human-Computer Interaction</strong> — São Judas · 160 h · Jul 2026</li>
-        <li><strong>Python</strong> — Santander Open Academy · 8 h · Aug 2026</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Certifications</h2>
+        <hr>
+        <div class="cert">
+          <b>Algorithms and Programming Specialist</b>
+          <span>São Judas Tadeu University · 160 h · 2026</span>
+        </div>
+        <div class="cert">
+          <b>Fundamentals of UX Design and Human-Computer Interaction</b>
+          <span>São Judas Tadeu University · 160 h · 2026</span>
+        </div>
+        <div class="cert">
+          <b>Python</b>
+          <span>Santander Open Academy · 8 h · 2026</span>
+        </div>
+      </section>
+    </aside>
 
+    <div class="principal">
+      <section>
+        <div class="cabeca">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.6-9 5.8V22h18v-2.2c0-3.2-4-5.8-9-5.8Z"/></svg>
+          </span>
+          <h2>Profile</h2>
+        </div>
+        <hr>
+        <p>
+          Computer Science student looking for an internship in software development or data
+          analysis, on a team where I can learn from production code and contribute early. I
+          learn by building: my projects come from problems in my own routine and are published
+          with automated tests and documentation. Available 30 hours/week.
+        </p>
+      </section>
+
+      <section>
+        <div class="cabeca">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z"/></svg>
+          </span>
+          <h2>Projects</h2>
+        </div>
+        <hr>
+
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Tracker Responsável <span class="item-sub">(Responsible Gaming Tracker)</span></span>
+            <span class="item-data">2026</span>
+          </div>
+          <div class="item-sub">Java 21 · Swing/AWT · SQLite · Maven · JUnit 5</div>
+          <ul class="bullets">
+            <li>Built a Windows desktop app that detects games running in the background and shows, before each session, how many hours were already played that week.</li>
+            <li>Designed session logging in SQLite that avoids double-counting overlapping games and excludes time while the PC is asleep.</li>
+            <li>Wrote 22 JUnit 5 tests with injected process reading, running on every push via GitHub Actions.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Painel Pessoal <span class="item-sub">(Personal Dashboard)</span></span>
+            <span class="item-data">2026</span>
+          </div>
+          <div class="item-sub">React 19 · TypeScript · Vite · Supabase · PWA</div>
+          <ul class="bullets">
+            <li>Built a mobile-first daily dashboard (tasks, study log, books, calendar and weather), installable as a PWA and deployed on Netlify.</li>
+            <li>Implemented authentication and real-time sync across devices, using optimistic updates and a local cache.</li>
+            <li>Secured user data with PostgreSQL Row Level Security, so each user can access only their own records.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Monitor de Preços <span class="item-sub">(Price Tracker)</span></span>
+            <span class="item-data">2026</span>
+          </div>
+          <div class="item-sub">Python 3.13 · Flask · SQLite · pytest · GitHub Actions</div>
+          <ul class="bullets">
+            <li>Built a web app that compares the price of the same product across Brazilian stores, parsing JSON-LD (schema.org) or HTML, with email alerts on 4% price drops.</li>
+            <li>Integrated the official Mercado Livre API over OAuth 2.0 with PKCE and automatic token refresh.</li>
+            <li>Wrote pytest suites that run offline against saved real store pages on every push.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="cabeca">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3ZM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8Z"/></svg>
+          </span>
+          <h2>Education</h2>
+        </div>
+        <hr>
+        <div class="item">
+          <div class="item-topo">
+            <span class="item-titulo">Bachelor of Science in Computer Science</span>
+            <span class="item-data">2026 – present</span>
+          </div>
+          <div class="item-sub">São Judas Tadeu University · 2nd semester · expected graduation Dec 2030</div>
+          <ul class="bullets">
+            <li>Current coursework: Applied Computational Mathematics; Software Design and Engineering.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
   </main>
 </body>
 </html>

@@ -424,6 +424,13 @@ p.todo { display: block; padding: 10px 14px; }
   border-color: transparent;
 }
 
+.shot-semana {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: #1b2838;
+}
+
 .win-shot {
   width: min(100%, 420px);
   height: auto;

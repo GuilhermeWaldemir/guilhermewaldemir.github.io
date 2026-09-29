@@ -112,16 +112,22 @@
           </p>
 
           <ul class="tags" aria-label="Tecnologias">
-            <li>Java 21</li><li>Swing / AWT</li><li>SQLite</li><li>JDBC</li><li>Maven</li><li>JUnit 5</li>
+            <li>Java 21</li><li>Swing / AWT</li><li>HTTP embutido</li><li>HTML / CSS / JS</li><li>SQLite</li><li>JDBC</li><li>Maven</li><li>JUnit 5</li>
           </ul>
 
           <div class="langs">
             <p class="mini">Linguagens no repositório</p>
-            <div class="langbar" role="img" aria-label="Java 100%">
-              <span style="--w:100%; --c:#b07219"></span>
+            <div class="langbar" role="img" aria-label="Java 87,3%, CSS 6,5%, JavaScript 4,4%, HTML 1,7%">
+              <span style="--w:87.3%; --c:#b07219"></span>
+              <span style="--w:6.5%; --c:#663399"></span>
+              <span style="--w:4.4%; --c:#f1e05a"></span>
+              <span style="--w:1.7%; --c:#e34c26"></span>
             </div>
             <ul class="legend">
-              <li style="--c:#b07219">Java <span>100%</span></li>
+              <li style="--c:#b07219">Java <span>87,3%</span></li>
+              <li style="--c:#663399">CSS <span>6,5%</span></li>
+              <li style="--c:#f1e05a">JavaScript <span>4,4%</span></li>
+              <li style="--c:#e34c26">HTML <span>1,7%</span></li>
             </ul>
           </div>
 
@@ -154,10 +160,10 @@
           <section class="block">
             <h3>Como funciona</h3>
             <ol class="steps">
-              <li>A cada 5 segundos, o <code>ProcessMonitor</code> lê os processos abertos (API <code>ProcessHandle</code> do Java) e compara com a sua lista de jogos.</li>
-              <li>Quando um jogo acaba de abrir, a janela de aviso aparece por cima dele. Você escolhe jogar ou fechar o jogo.</li>
-              <li>O <code>PlayTimeTracker</code> abre, estende ou fecha a sessão de jogo e grava tudo num banco SQLite local.</li>
-              <li>O ícone na bandeja mostra o total da semana (de segunda a domingo) e permite iniciar o app junto com o Windows.</li>
+              <li>A cada 5 segundos, o <code>ProcessMonitor</code> lê os processos abertos (API <code>ProcessHandle</code> do Java) e compara com a sua lista, que separa <strong>launchers</strong> de <strong>jogos</strong>.</li>
+              <li>Quando um deles acaba de abrir, a janela de aviso aparece por cima. Você escolhe jogar ou fechar o jogo.</li>
+              <li>O <code>PlayTimeTracker</code> abre, estende ou fecha a sessão de cada jogo e grava tudo num banco SQLite local. Launcher aberto avisa, mas não liga o cronômetro.</li>
+              <li>Pelo ícone na bandeja você vê o total da semana e abre a <strong>tela da semana</strong> no navegador, no estilo da Steam: quais jogos você jogou e quantas horas em cada um.</li>
             </ol>
           </section>
 
@@ -165,9 +171,12 @@
             <h3>Decisões técnicas</h3>
             <ul class="points">
               <li><strong>Salva a cada verificação</strong>, não só ao fechar o jogo: se o PC desligar de repente, perde no máximo 5 segundos.</li>
-              <li><strong>Sem tempo em dobro:</strong> conta enquanto <em>qualquer</em> jogo estiver aberto (Steam + jogo não somam duas vezes) e ignora o tempo em que o PC ficou em suspensão.</li>
+              <li><strong>Launcher não é jogo:</strong> a Steam pode ficar aberta o dia inteiro sem virar hora jogada. Ela dispara o aviso, mas só jogo liga o cronômetro.</li>
+              <li><strong>Sem tempo em dobro:</strong> cada jogo tem a sua sessão, mas o total da semana é a <em>união</em> dos intervalos. Dois jogos abertos das 20h às 21h somam 1h no total, não 2h.</li>
+              <li><strong>A tela é servida pelo próprio app</strong>, com o servidor HTTP que já vem no Java, sem framework e sem dependência nova. Ele escuta só no <code>127.0.0.1</code>, em uma porta sorteada, então nada fica exposto na rede.</li>
               <li><strong>Só uma cópia rodando</strong>, com <code>FileLock</code>: a trava é do sistema operacional e é liberada até se o app travar.</li>
-              <li><strong>Testável:</strong> a leitura de processos é injetada no monitor, então os testes em JUnit 5 simulam jogos abrindo, suspensão do PC e sessões que atravessam a virada da semana.</li>
+              <li><strong>Somar horas é regra, não consulta:</strong> o SQL devolve só as sessões do período, e quem soma é uma classe testável sem banco.</li>
+              <li><strong>57 testes em 11 classes</strong>, rodando no GitHub Actions a cada envio de código. Cobrem suspensão do PC, dois jogos abertos juntos, virada de semana e até o servidor da tela, que sobe de verdade e responde a requisições no teste.</li>
             </ul>
           </section>
         </div>
@@ -187,25 +196,27 @@
             para cadastrar o que você está lendo. Dá para colocar o painel no celular: pelo
             Chrome, basta adicionar o site à tela inicial, e ele passa a funcionar como um
             app. Tudo o que você altera no celular aparece no computador, e vice-versa.
+            O visual é um mapa de tower defense na selva, com tema de dia e de noite: as
+            texturas de madeira, os ícones e o cenário foram desenhados em SVG e CSS.
           </p>
 
           <ul class="tags" aria-label="Tecnologias">
-            <li>React 19</li><li>TypeScript</li><li>Vite</li><li>Supabase</li><li>PostgreSQL</li><li>PWA</li><li>CSS puro</li><li>Netlify</li>
+            <li>React 19</li><li>TypeScript</li><li>Vite</li><li>Supabase</li><li>PostgreSQL</li><li>PWA</li><li>CSS puro</li><li>Design system</li><li>Netlify</li>
           </ul>
 
           <div class="langs">
             <p class="mini">Linguagens no repositório</p>
-            <div class="langbar" role="img" aria-label="TypeScript 78,5%, CSS 17,4%, PL/pgSQL 3,2%, HTML 0,9%">
-              <span style="--w:78.5%; --c:#3178c6"></span>
-              <span style="--w:17.4%; --c:#663399"></span>
-              <span style="--w:3.2%; --c:#336790"></span>
-              <span style="--w:0.9%; --c:#e34c26"></span>
+            <div class="langbar" role="img" aria-label="TypeScript 71,1%, CSS 25,7%, PL/pgSQL 2,6%, HTML 0,6%">
+              <span style="--w:71.1%; --c:#3178c6"></span>
+              <span style="--w:25.7%; --c:#663399"></span>
+              <span style="--w:2.6%; --c:#336790"></span>
+              <span style="--w:0.6%; --c:#e34c26"></span>
             </div>
             <ul class="legend">
-              <li style="--c:#3178c6">TypeScript <span>78,5%</span></li>
-              <li style="--c:#663399">CSS <span>17,4%</span></li>
-              <li style="--c:#336790">PL/pgSQL <span>3,2%</span></li>
-              <li style="--c:#e34c26">HTML <span>0,9%</span></li>
+              <li style="--c:#3178c6">TypeScript <span>71,1%</span></li>
+              <li style="--c:#663399">CSS <span>25,7%</span></li>
+              <li style="--c:#336790">PL/pgSQL <span>2,6%</span></li>
+              <li style="--c:#e34c26">HTML <span>0,6%</span></li>
             </ul>
           </div>
 
@@ -219,9 +230,9 @@
           <figure class="visual">
             <div class="shots">
               <img class="shot-desktop" src="assets/painel-inicio-pc.webp" width="1600" height="1050"
-                   alt="Tela inicial do painel no computador: saudação, clima, progresso das tarefas, timer de foco, livro em leitura, estudo na semana e próximos eventos." loading="lazy">
+                   alt="Tela inicial do painel no computador, com tema de selva: cartões de madeira sobre um mapa com trilha e balões, mostrando saudação, clima, progresso das tarefas, timer de foco, livro em leitura, estudo na semana e próximos eventos." loading="lazy">
               <img class="shot-phone" src="assets/painel-agenda-celular.webp" width="780" height="1806"
-                   alt="Agenda do painel no celular: calendário mensal com eventos marcados." loading="lazy">
+                   alt="Agenda do painel no celular: calendário mensal em madeira com eventos marcados por balões coloridos." loading="lazy">
             </div>
             <figcaption>Início no computador e agenda no celular (dados de exemplo).</figcaption>
           </figure>
@@ -258,9 +269,26 @@
           </section>
 
           <section class="block">
+            <h3>Tema e design</h3>
+            <p>
+              O painel é revestido com um tema de <strong>tower defense na selva</strong>: o dia
+              bagunçado é o inimigo e cada tarefa é um balão a estourar. A arte é toda original
+              (texturas de madeira, folhagem e ícones desenhados em SVG), porque o repositório é
+              público e usar material de um jogo de verdade não seria correto.
+            </p>
+            <ul class="points">
+              <li><strong>Tema claro e escuro</strong>, com opção de alternar.</li>
+              <li><strong>Sistema de design documentado</strong> em arquivos próprios, com as cores, a tipografia e as regras de cada componente escritas antes de virar código.</li>
+              <li><strong>Acessibilidade:</strong> contraste e tamanho de texto revisados, e as animações somem para quem pede menos movimento no sistema.</li>
+            </ul>
+          </section>
+
+          <section class="block">
             <h3>Decisões técnicas</h3>
             <ul class="points">
-              <li><strong>Segurança por linha (RLS):</strong> políticas no PostgreSQL garantem que cada usuário só lê e altera os próprios dados; a chave do navegador é pública de propósito.</li>
+              <li><strong>Segurança por linha (RLS):</strong> cada tabela tem políticas separadas para ler, criar, editar e apagar, e todas exigem que a linha seja do usuário logado. A de edição ainda impede passar uma linha para outra pessoa.</li>
+              <li><strong>Só a chave pública no navegador:</strong> quem protege os dados são as políticas do banco. A chave secreta nunca entrou no código nem no histórico do Git.</li>
+              <li><strong>Sem atalhos que ignoram o RLS:</strong> nada de views ou funções privilegiadas no esquema público. Os relatórios de segurança da Supabase passam sem pendências.</li>
               <li><strong>Timer à prova de tela bloqueada:</strong> guarda o horário de término, não um contador. O tempo restante é sempre “fim − agora”.</li>
               <li><strong>Tarefas repetidas sem “reset”:</strong> a tarefa guarda em que dia foi concluída; se não for o dia atual, aparece pendente.</li>
               <li><strong>Sem framework de CSS:</strong> estilo feito com variáveis CSS e layout mobile-first.</li>
